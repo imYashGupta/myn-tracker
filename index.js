@@ -18,9 +18,9 @@ app.use("/",(request,res,next) => {
         if(style){
             const browser = await puppeteer.launch({
                 headless: true,
-                executablePath: '/usr/bin/chromium',
+                executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
-            });
+              });
             const page = await browser.newPage();
             // await page.goto('https://github.com/');
             await page.goto('https://www.myntra.com');
