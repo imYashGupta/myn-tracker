@@ -16,7 +16,11 @@ app.use("/",(request,res,next) => {
         const {style} = request.query;
         console.log(style);
         if(style){
-            const browser = await puppeteer.launch({headless: false});
+            const browser = await puppeteer.launch({
+                headless: true,
+                executablePath: '/usr/bin/chromium',
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
             const page = await browser.newPage();
             // await page.goto('https://github.com/');
             await page.goto('https://www.myntra.com');
